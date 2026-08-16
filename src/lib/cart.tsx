@@ -10,6 +10,9 @@ import type { Product } from "@/data/products";
 
 export type CartLine = { product: Product; qty: number };
 
+export const OWNER_PHONE = "919530640463";
+export const OWNER_PHONE_DISPLAY = "+91 95306 40463";
+
 type CartValue = {
   lines: CartLine[];
   count: number;
@@ -77,12 +80,31 @@ export function useCart() {
 }
 
 export function normalizePhone(raw: string) {
-  return raw.replace(/[^0-9]/g, "");
+  let digits = raw.replace(/[^0-9]/g, "");
+  // If user inputs a 10-digit Indian number without country code, add 91
+  if (digits.length === 10) {
+    digits = `91${digits}`;
+  }
+  return digits;
 }
 
-export function buildCartMessage(lines: CartLine[], total: number) {
+export function buildOwnerCartMessage(lines: CartLine[], total: number, customerPhone: string) {
   const items = lines
     .map((l) => `• ${l.qty} × ${l.product.name} — $${(l.qty * l.product.price).toFixed(2)}`)
     .join("\n");
-  return `Hi! Here is my cart from Petal & Pine:\n\n${items}\n\nTotal: $${total.toFixed(2)}`;
+  return `🧸 *New Order from Gullak — The Toy House!*\n\n📱 *Customer Phone*: +${customerPhone}\n\n🛍️ *Order Items*:\n${items}\n\n💰 *Total Amount*: $${total.toFixed(2)}`;
+}
+
+export function buildCustomerCartMessage(lines: CartLine[], total: number) {
+  const items = lines
+    .map((l) => `• ${l.qty} × ${l.product.name} — $${(l.qty * l.product.price).toFixed(2)}`)
+    .join("\n");
+  return `🧸 *My Wishlist from Gullak — The Toy House*\n\n${items}\n\n💰 *Total*: $${total.toFixed(2)}\n\n🏬 Gullak Store: ${OWNER_PHONE_DISPLAY}`;
+}
+
+export function buildCartMessage(lines: CartLine[], total: number, customerPhone?: string) {
+  if (customerPhone) {
+    return buildOwnerCartMessage(lines, total, customerPhone);
+  }
+  return buildCustomerCartMessage(lines, total);
 }

@@ -30,9 +30,9 @@ export function PhoneDialog({ open, initial, onOpenChange, onSave }: Props) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="font-display text-xl">Your WhatsApp number</DialogTitle>
+          <DialogTitle className="font-display text-xl">Enter your WhatsApp number</DialogTitle>
           <DialogDescription>
-            We'll send your cart summary to this number on WhatsApp. Include your country code.
+            Your number will be attached to the order sent to Gullak (+91 95306 40463) so we can confirm your items.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2">

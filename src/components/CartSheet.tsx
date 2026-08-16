@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Minus, Plus, Trash2, MessageCircle } from "lucide-react";
+import { Minus, Plus, Trash2, MessageCircle, Send } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -11,7 +11,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
-import { buildCartMessage, useCart } from "@/lib/cart";
+import {
+  OWNER_PHONE,
+  OWNER_PHONE_DISPLAY,
+  buildOwnerCartMessage,
+  buildCustomerCartMessage,
+  useCart,
+} from "@/lib/cart";
 import { PhoneDialog } from "@/components/PhoneDialog";
 
 export function CartSheet({
@@ -20,14 +26,20 @@ export function CartSheet({
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-}) {
+  }) {
   const { lines, total, setQty, remove, phone, setPhone } = useCart();
   const [askPhone, setAskPhone] = useState(false);
 
-  function send(to: string) {
-    const text = encodeURIComponent(buildCartMessage(lines, total));
-    window.open(`https://wa.me/${to}?text=${text}`, "_blank", "noopener,noreferrer");
-    toast.success("Opening WhatsApp with your cart summary");
+  function sendToOwner(customerPhone: string) {
+    const text = encodeURIComponent(buildOwnerCartMessage(lines, total, customerPhone));
+    window.open(`https://wa.me/${OWNER_PHONE}?text=${text}`, "_blank", "noopener,noreferrer");
+    toast.success(`Order summary prepared for Gullak Store (${OWNER_PHONE_DISPLAY})`);
+  }
+
+  function sendToCustomer(customerPhone: string) {
+    const text = encodeURIComponent(buildCustomerCartMessage(lines, total));
+    window.open(`https://wa.me/${customerPhone}?text=${text}`, "_blank", "noopener,noreferrer");
+    toast.success(`Sent copy to your WhatsApp (+${customerPhone})`);
   }
 
   function handleSend() {
@@ -36,7 +48,7 @@ export function CartSheet({
       setAskPhone(true);
       return;
     }
-    send(phone);
+    sendToOwner(phone);
   }
 
   return (
@@ -46,7 +58,7 @@ export function CartSheet({
           <SheetHeader>
             <SheetTitle className="font-display text-xl">🛒 Your Wishlist</SheetTitle>
             <SheetDescription>
-              Send your toy wishlist to WhatsApp and we'll sort it from there!
+              Send your order directly to Gullak Store on WhatsApp!
             </SheetDescription>
           </SheetHeader>
 
@@ -64,7 +76,7 @@ export function CartSheet({
                     loading="lazy"
                     width={800}
                     height={800}
-                    className="size-20 rounded-xl object-cover"
+                    className="size-20 rounded-xl object-cover border border-slate-100 bg-slate-50"
                   />
                   <div className="flex-1">
                     <p className="text-sm font-medium">{line.product.name}</p>
@@ -94,7 +106,7 @@ export function CartSheet({
                       <Button
                         size="icon"
                         variant="ghost"
-                        className="size-7 text-muted-foreground"
+                        className="size-7 text-muted-foreground hover:text-destructive"
                         onClick={() => remove(line.product.id)}
                         aria-label={`Remove ${line.product.name}`}
                       >
@@ -107,23 +119,44 @@ export function CartSheet({
             )}
           </div>
 
-          <SheetFooter>
-            <Separator className="mb-2" />
-            <div className="mb-3 flex items-center justify-between text-sm">
+          <SheetFooter className="flex flex-col gap-2">
+            <Separator className="mb-1" />
+            <div className="flex items-center justify-between text-sm">
               <span className="text-muted-foreground">Total</span>
               <span className="font-display text-lg">${total.toFixed(2)}</span>
             </div>
-            <Button variant="whatsapp" disabled={!lines.length} onClick={handleSend}>
+
+            {/* Primary Action: Send Order to Store Owner */}
+            <Button
+              variant="whatsapp"
+              disabled={!lines.length}
+              onClick={handleSend}
+              className="w-full font-semibold shadow-xs"
+            >
               <MessageCircle className="size-4" />
-              Send Wishlist to WhatsApp
+              Send Order to Gullak Store
             </Button>
-            {phone ? (
-              <button
-                className="mt-2 text-center text-xs text-muted-foreground underline"
-                onClick={() => setAskPhone(true)}
-              >
-                Sending to +{phone} — change number
-              </button>
+
+            {/* Secondary Action: Also send copy to customer's own number */}
+            {phone && lines.length > 0 ? (
+              <div className="flex flex-col items-center gap-1 mt-1 text-xs text-muted-foreground">
+                <div className="flex items-center gap-2">
+                  <span>Your number: <strong>+{phone}</strong></span>
+                  <button
+                    className="underline text-[#009DE0] hover:text-[#0089c4]"
+                    onClick={() => setAskPhone(true)}
+                  >
+                    Change
+                  </button>
+                </div>
+                <button
+                  className="flex items-center gap-1 underline text-muted-foreground hover:text-foreground mt-0.5"
+                  onClick={() => sendToCustomer(phone)}
+                >
+                  <Send className="size-3" />
+                  Also send copy to my own WhatsApp
+                </button>
+              </div>
             ) : null}
           </SheetFooter>
         </SheetContent>
@@ -136,7 +169,7 @@ export function CartSheet({
         onSave={(next) => {
           setPhone(next);
           setAskPhone(false);
-          send(next);
+          sendToOwner(next);
         }}
       />
     </>
