@@ -150,12 +150,6 @@
   }
 }
 
-@utility font-display {
-  font-family: var(--font-display);
-  font-weight: 500;
-  letter-spacing: -0.01em;
-}
-
 @utility surface-soft {
   background-image: linear-gradient(
     180deg,
