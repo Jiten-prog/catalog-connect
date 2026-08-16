@@ -32,7 +32,7 @@ export function PhoneDialog({ open, initial, onOpenChange, onSave }: Props) {
         <DialogHeader>
           <DialogTitle className="font-display text-xl">Enter your WhatsApp number</DialogTitle>
           <DialogDescription>
-            Your number will be attached to the order sent to Gullak (+91 95306 40463) so we can confirm your items.
+            Enter your number to receive your order summary. A copy is automatically shared with the store owner for confirmation.
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-2">

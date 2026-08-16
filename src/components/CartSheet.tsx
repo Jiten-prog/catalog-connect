@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Minus, Plus, Trash2, MessageCircle, Send } from "lucide-react";
+import { Minus, Plus, Trash2, MessageCircle, ShieldCheck } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -13,7 +13,6 @@ import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
 import {
   OWNER_PHONE,
-  OWNER_PHONE_DISPLAY,
   buildOwnerCartMessage,
   buildCustomerCartMessage,
   useCart,
@@ -26,20 +25,25 @@ export function CartSheet({
 }: {
   open: boolean;
   onOpenChange: (open: boolean) => void;
-  }) {
+}) {
   const { lines, total, setQty, remove, phone, setPhone } = useCart();
   const [askPhone, setAskPhone] = useState(false);
 
-  function sendToOwner(customerPhone: string) {
-    const text = encodeURIComponent(buildOwnerCartMessage(lines, total, customerPhone));
-    window.open(`https://wa.me/${OWNER_PHONE}?text=${text}`, "_blank", "noopener,noreferrer");
-    toast.success(`Order summary prepared for Gullak Store (${OWNER_PHONE_DISPLAY})`);
-  }
+  function executeSend(customerPhone: string) {
+    // 1. Prepare message for store owner with customer's phone number
+    const ownerText = encodeURIComponent(buildOwnerCartMessage(lines, total, customerPhone));
+    // 2. Prepare message for customer
+    const customerText = encodeURIComponent(buildCustomerCartMessage(lines, total));
 
-  function sendToCustomer(customerPhone: string) {
-    const text = encodeURIComponent(buildCustomerCartMessage(lines, total));
-    window.open(`https://wa.me/${customerPhone}?text=${text}`, "_blank", "noopener,noreferrer");
-    toast.success(`Sent copy to your WhatsApp (+${customerPhone})`);
+    // Open chat for owner with customer's details
+    window.open(`https://wa.me/${OWNER_PHONE}?text=${ownerText}`, "_blank", "noopener,noreferrer");
+
+    // Also open copy for customer
+    setTimeout(() => {
+      window.open(`https://wa.me/${customerPhone}?text=${customerText}`, "_blank", "noopener,noreferrer");
+    }, 400);
+
+    toast.success("Order summary sent! A copy has been shared with the store owner.");
   }
 
   function handleSend() {
@@ -48,7 +52,7 @@ export function CartSheet({
       setAskPhone(true);
       return;
     }
-    sendToOwner(phone);
+    executeSend(phone);
   }
 
   return (
@@ -58,7 +62,7 @@ export function CartSheet({
           <SheetHeader>
             <SheetTitle className="font-display text-xl">🛒 Your Wishlist</SheetTitle>
             <SheetDescription>
-              Send your order directly to Gullak Store on WhatsApp!
+              Receive your order summary on WhatsApp instantly.
             </SheetDescription>
           </SheetHeader>
 
@@ -126,38 +130,34 @@ export function CartSheet({
               <span className="font-display text-lg">${total.toFixed(2)}</span>
             </div>
 
-            {/* Primary Action: Send Order to Store Owner */}
             <Button
               variant="whatsapp"
               disabled={!lines.length}
               onClick={handleSend}
-              className="w-full font-semibold shadow-xs"
+              className="w-full font-semibold shadow-xs py-2.5"
             >
               <MessageCircle className="size-4" />
-              Send Order to Gullak Store
+              Send Order Summary to WhatsApp
             </Button>
 
-            {/* Secondary Action: Also send copy to customer's own number */}
-            {phone && lines.length > 0 ? (
-              <div className="flex flex-col items-center gap-1 mt-1 text-xs text-muted-foreground">
-                <div className="flex items-center gap-2">
-                  <span>Your number: <strong>+{phone}</strong></span>
+            {/* Disclaimer and user phone info */}
+            <div className="flex flex-col items-center text-center gap-1.5 pt-1 text-xs text-muted-foreground">
+              {phone ? (
+                <div className="flex items-center gap-1.5">
+                  <span>Sending to: <strong>+{phone}</strong></span>
                   <button
                     className="underline text-[#009DE0] hover:text-[#0089c4]"
                     onClick={() => setAskPhone(true)}
                   >
-                    Change
+                    (Change)
                   </button>
                 </div>
-                <button
-                  className="flex items-center gap-1 underline text-muted-foreground hover:text-foreground mt-0.5"
-                  onClick={() => sendToCustomer(phone)}
-                >
-                  <Send className="size-3" />
-                  Also send copy to my own WhatsApp
-                </button>
-              </div>
-            ) : null}
+              ) : null}
+              <p className="flex items-center justify-center gap-1 text-[11px] text-slate-500">
+                <ShieldCheck className="size-3.5 text-emerald-600 shrink-0" />
+                A copy will be shared with the store owner for order confirmation.
+              </p>
+            </div>
           </SheetFooter>
         </SheetContent>
       </Sheet>
@@ -169,7 +169,7 @@ export function CartSheet({
         onSave={(next) => {
           setPhone(next);
           setAskPhone(false);
-          sendToOwner(next);
+          executeSend(next);
         }}
       />
     </>
