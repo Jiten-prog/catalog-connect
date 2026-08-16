@@ -30,20 +30,22 @@ export function CartSheet({
   const [askPhone, setAskPhone] = useState(false);
 
   function executeSend(customerPhone: string) {
+    const isOwner = customerPhone === OWNER_PHONE;
+
     // 1. Prepare message for store owner with customer's phone number
     const ownerText = encodeURIComponent(buildOwnerCartMessage(lines, total, customerPhone));
-    // 2. Prepare message for customer
-    const customerText = encodeURIComponent(buildCustomerCartMessage(lines, total));
-
-    // Open chat for owner with customer's details
     window.open(`https://wa.me/${OWNER_PHONE}?text=${ownerText}`, "_blank", "noopener,noreferrer");
 
-    // Also open copy for customer
-    setTimeout(() => {
-      window.open(`https://wa.me/${customerPhone}?text=${customerText}`, "_blank", "noopener,noreferrer");
-    }, 400);
-
-    toast.success("Order summary sent! A copy has been shared with the store owner.");
+    // 2. If it's a customer (different number), also open their copy without opening duplicate windows
+    if (!isOwner) {
+      const customerText = encodeURIComponent(buildCustomerCartMessage(lines, total));
+      setTimeout(() => {
+        window.open(`https://wa.me/${customerPhone}?text=${customerText}`, "_blank", "noopener,noreferrer");
+      }, 400);
+      toast.success("Order summary sent! A copy has been shared with the store owner.");
+    } else {
+      toast.success("Order summary opened on WhatsApp!");
+    }
   }
 
   function handleSend() {
