@@ -44,16 +44,16 @@ export function CartSheet({
       <Sheet open={open} onOpenChange={onOpenChange}>
         <SheetContent className="flex w-full flex-col sm:max-w-md">
           <SheetHeader>
-            <SheetTitle className="font-display text-xl">Your cart</SheetTitle>
+            <SheetTitle className="font-display text-xl">🛒 Your Wishlist</SheetTitle>
             <SheetDescription>
-              Send the list to your WhatsApp and we'll take it from there.
+              Send your toy wishlist to WhatsApp and we'll sort it from there!
             </SheetDescription>
           </SheetHeader>
 
           <div className="flex-1 space-y-4 overflow-y-auto px-4">
             {lines.length === 0 ? (
               <p className="py-10 text-center text-sm text-muted-foreground">
-                Nothing here yet. Add something lovely.
+                Nothing here yet — go pick some awesome toys! 🎮
               </p>
             ) : (
               lines.map((line) => (
@@ -115,7 +115,7 @@ export function CartSheet({
             </div>
             <Button variant="whatsapp" disabled={!lines.length} onClick={handleSend}>
               <MessageCircle className="size-4" />
-              Send cart to WhatsApp
+              Send Wishlist to WhatsApp
             </Button>
             {phone ? (
               <button

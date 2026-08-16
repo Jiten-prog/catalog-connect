@@ -1,12 +1,3 @@
-import mug from "@/assets/mug.jpg";
-import candle from "@/assets/candle.jpg";
-import tote from "@/assets/tote.jpg";
-import notebook from "@/assets/notebook.jpg";
-import lamp from "@/assets/lamp.jpg";
-import soap from "@/assets/soap.jpg";
-import plates from "@/assets/plates.jpg";
-import plant from "@/assets/plant.jpg";
-
 export type Product = {
   id: string;
   name: string;
@@ -17,75 +8,75 @@ export type Product = {
   featured?: boolean;
 };
 
-export const categories = ["All", "Kitchen", "Home", "Bath", "Stationery"] as const;
+export const categories = ["All", "Action Figures", "Board Games", "Outdoor", "Arts & Crafts", "Puzzles"] as const;
 
 export const products: Product[] = [
   {
-    id: "mug",
-    name: "Sand Stoneware Mug",
-    price: 18,
-    category: "Kitchen",
-    image: mug,
-    blurb: "Hand-glazed, holds 300ml.",
-    featured: true,
-  },
-  {
-    id: "candle",
-    name: "Warm Linen Candle",
-    price: 24,
-    category: "Home",
-    image: candle,
-    blurb: "Soy wax, 40 hour burn.",
-    featured: true,
-  },
-  {
-    id: "tote",
-    name: "Everyday Linen Tote",
-    price: 32,
-    category: "Home",
-    image: tote,
-    blurb: "Washed linen, roomy fit.",
-    featured: true,
-  },
-  {
-    id: "notebook",
-    name: "Cloth Bound Notebook",
-    price: 14,
-    category: "Stationery",
-    image: notebook,
-    blurb: "160 dotted pages.",
-  },
-  {
-    id: "lamp",
-    name: "Rattan Table Lamp",
-    price: 68,
-    category: "Home",
-    image: lamp,
-    blurb: "Woven shade, soft glow.",
-    featured: true,
-  },
-  {
-    id: "soap",
-    name: "Soap Trio",
-    price: 21,
-    category: "Bath",
-    image: soap,
-    blurb: "Cold pressed, three scents.",
-  },
-  {
-    id: "plates",
-    name: "Matte Plate Set",
-    price: 54,
-    category: "Kitchen",
-    image: plates,
-    blurb: "Set of four, dishwasher safe.",
-  },
-  {
-    id: "plant",
-    name: "Potted Olive",
+    id: "robot",
+    name: "Turbo Robot Fighter",
     price: 29,
-    category: "Home",
-    image: plant,
-    blurb: "Loves a sunny window.",
+    category: "Action Figures",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
+    blurb: "Light-up eyes, 12 poseable joints.",
+    featured: true,
+  },
+  {
+    id: "blocks",
+    name: "Rainbow Building Blocks",
+    price: 34,
+    category: "Arts & Crafts",
+    image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop",
+    blurb: "100 colourful pieces, endless creations.",
+    featured: true,
+  },
+  {
+    id: "chess",
+    name: "Classic Chess Set",
+    price: 42,
+    category: "Board Games",
+    image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=400&h=400&fit=crop",
+    blurb: "Wooden pieces, folding board.",
+    featured: true,
+  },
+  {
+    id: "kite",
+    name: "Dragon Kite",
+    price: 18,
+    category: "Outdoor",
+    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
+    blurb: "Soars up to 100m, easy to fly.",
+    featured: true,
+  },
+  {
+    id: "puzzle",
+    name: "Space Adventure Puzzle",
+    price: 22,
+    category: "Puzzles",
+    image: "https://images.unsplash.com/photo-1611048267451-e6ed903c4a38?w=400&h=400&fit=crop",
+    blurb: "500 pieces, glow-in-the-dark.",
+  },
+  {
+    id: "dinosaur",
+    name: "Dino Discovery Set",
+    price: 38,
+    category: "Action Figures",
+    image: "https://images.unsplash.com/photo-1615789591457-74a63395c990?w=400&h=400&fit=crop",
+    blurb: "6 realistic dinosaur figures.",
+  },
+  {
+    id: "paints",
+    name: "Kids Art Paint Kit",
+    price: 26,
+    category: "Arts & Crafts",
+    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=400&fit=crop",
+    blurb: "24 washable colours, safe for kids.",
+  },
+  {
+    id: "frisbee",
+    name: "Glow Frisbee",
+    price: 12,
+    category: "Outdoor",
+    image: "https://images.unsplash.com/photo-1472289065668-ce650ac443d2?w=400&h=400&fit=crop",
+    blurb: "Lights up at night, ultra durable.",
   },
 ];
