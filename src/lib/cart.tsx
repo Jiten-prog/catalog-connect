@@ -10,8 +10,8 @@ import type { Product } from "@/data/products";
 
 export type CartLine = { product: Product; qty: number };
 
-export const OWNER_PHONE = "919530640463";
-export const OWNER_PHONE_DISPLAY = "+91 95306 40463";
+export const OWNER_PHONE = "919417511979";
+export const OWNER_PHONE_DISPLAY = "+91 94175 11979";
 
 type CartValue = {
   lines: CartLine[];
