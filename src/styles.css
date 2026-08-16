@@ -163,5 +163,3 @@
   border: 1px solid color-mix(in oklab, var(--color-border) 70%, transparent);
   box-shadow: 0 12px 30px -22px color-mix(in oklab, var(--color-foreground) 45%, transparent);
 }
-  }
-}
