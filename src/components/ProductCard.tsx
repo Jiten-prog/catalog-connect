@@ -10,8 +10,8 @@ export function ProductCard({
   onAdd: (product: Product) => void;
 }) {
   return (
-    <article className="card-soft group overflow-hidden rounded-2xl">
-      <div className="overflow-hidden bg-secondary">
+    <article className="card-soft group overflow-hidden rounded-2xl bg-card">
+      <div className="overflow-hidden bg-slate-50 border-b border-border/50">
         <img
           src={product.image}
           alt={product.name}
@@ -29,7 +29,11 @@ export function ProductCard({
         <p className="text-sm text-muted-foreground">{product.blurb}</p>
         <div className="flex items-center justify-between pt-2">
           <span className="font-display text-lg">${product.price.toFixed(2)}</span>
-          <Button size="sm" onClick={() => onAdd(product)}>
+          <Button
+            size="sm"
+            onClick={() => onAdd(product)}
+            className="bg-[#D82338] hover:bg-[#c01d30] text-white font-semibold shadow-xs"
+          >
             <Plus className="size-4" />
             Add
           </Button>

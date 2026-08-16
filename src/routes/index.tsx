@@ -16,21 +16,22 @@ import { categories, products, type Product } from "@/data/products";
 import { CartProvider, useCart } from "@/lib/cart";
 import { ProductCard } from "@/components/ProductCard";
 import { CartSheet } from "@/components/CartSheet";
+import logoImg from "@/assets/logo.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ToyWorld — The Fun Shop for Kids" },
+      { title: "Gullak — The Toy House" },
       {
         name: "description",
         content:
-          "Shop the best toys, games, action figures, and gifts for kids of all ages. Send your wishlist to WhatsApp in one tap!",
+          "Discover pure joy at Gullak — The Toy House! Quality wooden toys, plushies, puzzles, and musical toys. Send your wishlist to WhatsApp in one tap.",
       },
-      { property: "og:title", content: "ToyWorld — The Fun Shop for Kids" },
+      { property: "og:title", content: "Gullak — The Toy House" },
       {
         property: "og:description",
         content:
-          "Shop the best toys, games, action figures, and gifts for kids of all ages.",
+          "Discover pure joy at Gullak — The Toy House! Send your wishlist to WhatsApp in one tap.",
       },
     ],
   }),
@@ -49,10 +50,10 @@ function CatalogPage() {
 
   // Hero headline carousel
   const headlines = [
+    { line1: "Treasures of Joy at", highlight: "Gullak!" },
     { line1: "Where Every Day is", highlight: "Playtime!" },
+    { line1: "Pure Smiles for", highlight: "Little Hearts!" },
     { line1: "Toys That Spark", highlight: "Imagination!" },
-    { line1: "Gifts Kids Will", highlight: "Absolutely Love!" },
-    { line1: "Fun for Every", highlight: "Age & Stage!" },
   ];
   const [heroIdx, setHeroIdx] = useState(0);
   const [heroVisible, setHeroVisible] = useState(true);
@@ -103,15 +104,23 @@ function CatalogPage() {
     <div className="min-h-screen">
       <Toaster />
 
-      <header className="sticky top-0 z-30 border-b border-border/70 bg-background/90 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3">
-          <span className="font-display text-2xl tracking-wide shrink-0" style={{ color: 'oklch(0.62 0.23 25)' }}>🧸 ToyWorld</span>
+      {/* Gullak signature color bar */}
+      <div className="h-1.5 w-full gullak-bar" />
+
+      <header className="sticky top-0 z-30 border-b border-slate-100 bg-white/95 backdrop-blur shadow-xs">
+        <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-2">
+          <div className="flex items-center gap-2 shrink-0">
+            <img
+              src={logoImg}
+              alt="Gullak - The Toy House"
+              className="h-14 sm:h-18 md:h-20 w-auto object-contain transition-transform hover:scale-105"
+            />
+          </div>
 
           {/* Search bar */}
           <div className="relative flex-1 max-w-sm ml-auto">
             <Search
-              className="absolute left-3 top-1/2 -translate-y-1/2 size-4 pointer-events-none"
-              style={{ color: 'oklch(0.55 0.03 270)' }}
+              className="absolute left-3 top-1/2 -translate-y-1/2 size-4 pointer-events-none text-muted-foreground"
             />
             <input
               id="product-search"
@@ -119,7 +128,7 @@ function CatalogPage() {
               placeholder="Search toys…"
               value={query}
               onChange={(e) => setQuery(e.target.value)}
-              className="w-full rounded-full border border-border bg-background/80 py-2 pl-9 pr-9 text-sm outline-none ring-0 transition-all placeholder:text-muted-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
+              className="w-full rounded-full border border-slate-200 bg-slate-50/80 py-2 pl-9 pr-9 text-sm outline-none ring-0 transition-all placeholder:text-slate-400 focus:bg-white focus:border-[#009DE0] focus:ring-2 focus:ring-[#009DE0]/20"
             />
             {query && (
               <button
@@ -132,30 +141,41 @@ function CatalogPage() {
             )}
           </div>
 
-          <Button variant="outline" size="sm" onClick={() => setCartOpen(true)} className="gap-2 font-semibold shrink-0">
-            <ShoppingBag className="size-4" />
+          <Button
+            variant="outline"
+            size="sm"
+            onClick={() => setCartOpen(true)}
+            className="gap-2 font-semibold shrink-0 border-border hover:border-primary/50"
+          >
+            <ShoppingBag className="size-4" style={{ color: 'var(--gullak-red)' }} />
             Cart
-            {count > 0 ? <Badge className="ml-1">{count}</Badge> : null}
+            {count > 0 ? (
+              <span
+                className="ml-1 inline-flex items-center justify-center size-5 rounded-full text-xs font-bold text-white"
+                style={{ backgroundColor: 'var(--gullak-red)' }}
+              >
+                {count}
+              </span>
+            ) : null}
           </Button>
         </div>
       </header>
 
       <section className="surface-soft">
-        <div className="mx-auto max-w-6xl px-4 py-16 text-center">
-          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground font-bold">
-            🎉 Fun for all ages
+        <div className="mx-auto max-w-6xl px-4 py-14 text-center">
+          <p className="text-xs uppercase tracking-[0.25em] text-muted-foreground font-bold">
+            ✨ Gullak- The Toy House • Handpicked for Smiles
           </p>
           <h1
-            className="mt-4 font-display text-4xl leading-tight sm:text-6xl"
+            className="mt-4 font-display text-4xl leading-tight sm:text-6xl text-slate-900"
             style={{
-              color: 'oklch(0.22 0.04 270)',
               transition: 'opacity 0.4s ease, transform 0.4s ease',
               opacity: heroVisible ? 1 : 0,
               transform: heroVisible ? 'translateY(0)' : 'translateY(12px)',
             }}
           >
             {headlines[heroIdx].line1}{' '}
-            <span style={{ color: 'oklch(0.62 0.23 25)' }}>{headlines[heroIdx].highlight}</span>
+            <span className="text-[#D82338]">{headlines[heroIdx].highlight}</span>
           </h1>
           {/* Dot indicators */}
           <div className="mt-5 flex items-center justify-center gap-2">
@@ -164,25 +184,17 @@ function CatalogPage() {
                 key={i}
                 onClick={() => { setHeroVisible(false); setTimeout(() => { setHeroIdx(i); setHeroVisible(true); }, 400); }}
                 aria-label={`Slide ${i + 1}`}
-                style={{
-                  width: i === heroIdx ? '24px' : '8px',
-                  height: '8px',
-                  borderRadius: '9999px',
-                  background: i === heroIdx ? 'oklch(0.62 0.23 25)' : 'oklch(0.75 0.05 25)',
-                  border: 'none',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                }}
+                className={i === heroIdx ? "w-6 h-2 rounded-full bg-[#D82338] transition-all duration-300" : "w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300"}
               />
             ))}
           </div>
           <p className="mx-auto mt-5 max-w-xl text-base text-muted-foreground sm:text-lg">
-            Discover amazing toys, games, and gifts for kids of all ages.
-            Pick your favourites and send your wishlist straight to WhatsApp — no accounts needed!
+            Delightful wooden toys, cuddle plushies, puzzles, and music sets.
+            Choose what your little one loves and send your wishlist straight to WhatsApp in one tap!
           </p>
           <div className="mt-6 flex items-center justify-center gap-2 text-sm text-muted-foreground font-medium">
             <MessageCircle className="size-4 text-whatsapp" />
-            Send your wishlist via WhatsApp in one tap
+            Instant order & wishlist support via WhatsApp
           </div>
         </div>
       </section>
@@ -195,6 +207,11 @@ function CatalogPage() {
               size="sm"
               variant={category === c ? "default" : "secondary"}
               onClick={() => setCategory(c)}
+              className={
+                category === c
+                  ? "bg-[#009DE0] hover:bg-[#0089c4] text-white shadow-sm font-semibold rounded-full px-4"
+                  : "bg-slate-100 hover:bg-slate-200 text-slate-700 font-medium rounded-full px-4 border border-slate-200/60"
+              }
             >
               {c}
             </Button>
@@ -203,7 +220,7 @@ function CatalogPage() {
 
         {visibleFeatured.length > 0 ? (
           <section className="mb-14">
-            <h2 className="mb-4 font-display text-2xl" style={{ color: 'oklch(0.62 0.23 25)' }}>Featured Picks</h2>
+            <h2 className="mb-4 font-display text-2xl text-foreground">Featured Picks</h2>
             <Carousel opts={{ align: "start", loop: true }}>
               <CarouselContent>
                 {visibleFeatured.map((product) => (
@@ -222,12 +239,12 @@ function CatalogPage() {
         ) : null}
 
         <section>
-          <h2 className="mb-4 font-display text-2xl" style={{ color: 'oklch(0.62 0.23 25)' }}>
+          <h2 className="mb-4 font-display text-2xl text-foreground">
             {query.trim()
               ? `🔍 Results for "${query.trim()}"`
               : category === "All"
-              ? "🎮 All Toys"
-              : category}
+                ? "🎮 All Toys"
+                : category}
           </h2>
           {filtered.length === 0 ? (
             <div className="py-20 text-center">
@@ -236,8 +253,7 @@ function CatalogPage() {
               <p className="text-sm text-muted-foreground mt-1">Try a different search or browse all categories.</p>
               <button
                 onClick={() => setQuery("")}
-                className="mt-4 text-sm underline"
-                style={{ color: 'oklch(0.62 0.23 25)' }}
+                className="mt-4 text-sm text-primary underline"
               >
                 Clear search
               </button>

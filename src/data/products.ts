@@ -1,3 +1,12 @@
+import toyBlocks from "@/assets/toy-blocks.jpg";
+import toyBunny from "@/assets/toy-bunny.jpg";
+import toyCar from "@/assets/toy-car.jpg";
+import toyPuzzle from "@/assets/toy-puzzle.jpg";
+import toyRainbow from "@/assets/toy-rainbow.jpg";
+import toyRocket from "@/assets/toy-rocket.jpg";
+import toyTeddy from "@/assets/toy-teddy.jpg";
+import toyXylophone from "@/assets/toy-xylophone.jpg";
+
 export type Product = {
   id: string;
   name: string;
@@ -8,75 +17,75 @@ export type Product = {
   featured?: boolean;
 };
 
-export const categories = ["All", "Action Figures", "Board Games", "Outdoor", "Arts & Crafts", "Puzzles"] as const;
+export const categories = ["All", "Wooden Toys", "Plushies", "Puzzles", "Musical", "Vehicles"] as const;
 
 export const products: Product[] = [
   {
-    id: "robot",
-    name: "Turbo Robot Fighter",
-    price: 29,
-    category: "Action Figures",
-    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=400&fit=crop",
-    blurb: "Light-up eyes, 12 poseable joints.",
+    id: "rainbow-stacker",
+    name: "Pastel Wooden Rainbow",
+    price: 28,
+    category: "Wooden Toys",
+    image: toyRainbow,
+    blurb: "Natural pine wood, 7 stacking arches.",
     featured: true,
   },
   {
-    id: "blocks",
-    name: "Rainbow Building Blocks",
-    price: 34,
-    category: "Arts & Crafts",
-    image: "https://images.unsplash.com/photo-1587654780291-39c9404d746b?w=400&h=400&fit=crop",
-    blurb: "100 colourful pieces, endless creations.",
+    id: "cuddle-bunny",
+    name: "Velvet Cuddle Bunny",
+    price: 24,
+    category: "Plushies",
+    image: toyBunny,
+    blurb: "Ultra-soft linen plush with floppy ears.",
     featured: true,
   },
   {
-    id: "chess",
-    name: "Classic Chess Set",
-    price: 42,
-    category: "Board Games",
-    image: "https://images.unsplash.com/photo-1529699211952-734e80c4d42b?w=400&h=400&fit=crop",
-    blurb: "Wooden pieces, folding board.",
+    id: "space-rocket",
+    name: "Cosmic Wooden Rocket",
+    price: 32,
+    category: "Vehicles",
+    image: toyRocket,
+    blurb: "Detachable stages and astronaut figure.",
     featured: true,
   },
   {
-    id: "kite",
-    name: "Dragon Kite",
-    price: 18,
-    category: "Outdoor",
-    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop",
-    blurb: "Soars up to 100m, easy to fly.",
-    featured: true,
-  },
-  {
-    id: "puzzle",
-    name: "Space Adventure Puzzle",
-    price: 22,
-    category: "Puzzles",
-    image: "https://images.unsplash.com/photo-1611048267451-e6ed903c4a38?w=400&h=400&fit=crop",
-    blurb: "500 pieces, glow-in-the-dark.",
-  },
-  {
-    id: "dinosaur",
-    name: "Dino Discovery Set",
-    price: 38,
-    category: "Action Figures",
-    image: "https://images.unsplash.com/photo-1615789591457-74a63395c990?w=400&h=400&fit=crop",
-    blurb: "6 realistic dinosaur figures.",
-  },
-  {
-    id: "paints",
-    name: "Kids Art Paint Kit",
+    id: "rainbow-xylophone",
+    name: "Little Maestro Xylophone",
     price: 26,
-    category: "Arts & Crafts",
-    image: "https://images.unsplash.com/photo-1513364776144-60967b0f800f?w=400&h=400&fit=crop",
-    blurb: "24 washable colours, safe for kids.",
+    category: "Musical",
+    image: toyXylophone,
+    blurb: "8 tuned metal keys with wooden mallets.",
+    featured: true,
   },
   {
-    id: "frisbee",
-    name: "Glow Frisbee",
-    price: 12,
-    category: "Outdoor",
-    image: "https://images.unsplash.com/photo-1472289065668-ce650ac443d2?w=400&h=400&fit=crop",
-    blurb: "Lights up at night, ultra durable.",
+    id: "building-blocks",
+    name: "Classic Wooden Blocks Set",
+    price: 34,
+    category: "Wooden Toys",
+    image: toyBlocks,
+    blurb: "50 smooth geometric pieces in cotton sack.",
+  },
+  {
+    id: "classic-car",
+    name: "Vintage Roadster Toy",
+    price: 22,
+    category: "Vehicles",
+    image: toyCar,
+    blurb: "Smooth rolling wheels, solid beechwood.",
+  },
+  {
+    id: "shape-puzzle",
+    name: "Geometric Shape Puzzle",
+    price: 19,
+    category: "Puzzles",
+    image: toyPuzzle,
+    blurb: "Encourages fine motor & sorting skills.",
+  },
+  {
+    id: "teddy-bear",
+    name: "Little Honey Bear",
+    price: 25,
+    category: "Plushies",
+    image: toyTeddy,
+    blurb: "Hand-stitched classic nursery companion.",
   },
 ];

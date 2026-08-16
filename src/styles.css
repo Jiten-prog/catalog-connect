@@ -5,9 +5,9 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * Toy Store Theme — bright, playful, and fun!
+ * Design system definition — Gullak (The Toy House)
+ * Crisp pure white background with vivid Gullak toy accents (Red, Blue, Green, Orange, Yellow).
+ * Zero brown / zero cream tones.
  */
 
 @theme inline {
@@ -42,96 +42,88 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-ring-offset-background: var(--background);
-  --color-chart-1: var(--chart-1);
-  --color-chart-2: var(--chart-2);
-  --color-chart-3: var(--chart-3);
-  --color-chart-4: var(--chart-4);
-  --color-chart-5: var(--chart-5);
-  --color-sidebar: var(--sidebar);
-  --color-sidebar-foreground: var(--sidebar-foreground);
-  --color-sidebar-primary: var(--sidebar-primary);
-  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-  --color-sidebar-accent: var(--sidebar-accent);
-  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-  --color-sidebar-border: var(--sidebar-border);
-  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Specific Gullak Logo Colors */
+  --color-gullak-red: #D82338;
+  --color-gullak-blue: #009DE0;
+  --color-gullak-green: #00A651;
+  --color-gullak-orange: #F37021;
+  --color-gullak-yellow: #FFC20E;
 }
 
 :root {
   --radius: 1.25rem;
-  /* Warm white background */
-  --background: oklch(0.99 0.01 90);
-  --foreground: oklch(0.22 0.04 270);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.22 0.04 270);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.22 0.04 270);
-  /* Vibrant toy-red primary */
-  --primary: oklch(0.62 0.23 25);
-  --primary-foreground: oklch(1 0 0);
-  /* Sunny yellow secondary */
-  --secondary: oklch(0.93 0.18 90);
-  --secondary-foreground: oklch(0.25 0.04 60);
-  --muted: oklch(0.95 0.02 90);
-  --muted-foreground: oklch(0.52 0.03 270);
-  /* Sky blue accent */
-  --accent: oklch(0.75 0.18 230);
-  --accent-foreground: oklch(1 0 0);
-  --whatsapp: oklch(0.62 0.14 150);
-  --whatsapp-foreground: oklch(0.99 0.008 90);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.88 0.03 90);
-  --input: oklch(0.88 0.03 90);
-  --ring: oklch(0.62 0.23 25);
-  --chart-1: oklch(0.62 0.23 25);
-  --chart-2: oklch(0.75 0.18 230);
-  --chart-3: oklch(0.80 0.20 145);
-  --chart-4: oklch(0.93 0.18 90);
-  --chart-5: oklch(0.72 0.22 300);
-  --sidebar: oklch(0.98 0.01 90);
-  --sidebar-foreground: oklch(0.22 0.04 270);
-  --sidebar-primary: oklch(0.62 0.23 25);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.93 0.18 90);
-  --sidebar-accent-foreground: oklch(0.25 0.04 60);
-  --sidebar-border: oklch(0.88 0.03 90);
-  --sidebar-ring: oklch(0.62 0.23 25);
+  /* Pure crisp white — NO cream or brown */
+  --background: #FFFFFF;
+  /* Crisp deep charcoal from Gullak logo text */
+  --foreground: #1E293B;
+  --card: #FFFFFF;
+  --card-foreground: #1E293B;
+  --popover: #FFFFFF;
+  --popover-foreground: #1E293B;
+
+  /* Primary Action: Gullak Electric Cerulean Blue */
+  --primary: #009DE0;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary: Crisp cool slate (clean & modern) */
+  --secondary: #F1F5F9;
+  --secondary-foreground: #0F172A;
+
+  /* Muted elements */
+  --muted: #F8FAFC;
+  --muted-foreground: #64748B;
+
+  /* Accent: Light ice blue */
+  --accent: #E0F2FE;
+  --accent-foreground: #0369A1;
+
+  /* WhatsApp button: Gullak Emerald Green */
+  --whatsapp: #00A651;
+  --whatsapp-foreground: #FFFFFF;
+
+  /* Destructive: Gullak Red */
+  --destructive: #D82338;
+  --destructive-foreground: #FFFFFF;
+
+  /* Crisp subtle borders */
+  --border: #E2E8F0;
+  --input: #E2E8F0;
+  --ring: #009DE0;
+
+  --gullak-red: #D82338;
+  --gullak-blue: #009DE0;
+  --gullak-green: #00A651;
+  --gullak-orange: #F37021;
+  --gullak-yellow: #FFC20E;
 }
 
 .dark {
-  --background: oklch(0.18 0.04 270);
-  --foreground: oklch(0.97 0.01 90);
-  --card: oklch(0.24 0.05 270);
-  --card-foreground: oklch(0.97 0.01 90);
-  --popover: oklch(0.24 0.05 270);
-  --popover-foreground: oklch(0.97 0.01 90);
-  --primary: oklch(0.70 0.23 25);
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.35 0.05 270);
-  --secondary-foreground: oklch(0.97 0.01 90);
-  --muted: oklch(0.30 0.04 270);
-  --muted-foreground: oklch(0.65 0.03 270);
-  --accent: oklch(0.65 0.18 230);
-  --accent-foreground: oklch(1 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.70 0.23 25);
-  --chart-1: oklch(0.70 0.23 25);
-  --chart-2: oklch(0.65 0.18 230);
-  --chart-3: oklch(0.75 0.20 145);
-  --chart-4: oklch(0.85 0.18 90);
-  --chart-5: oklch(0.68 0.22 300);
-  --sidebar: oklch(0.24 0.05 270);
-  --sidebar-foreground: oklch(0.97 0.01 90);
-  --sidebar-primary: oklch(0.70 0.23 25);
-  --sidebar-primary-foreground: oklch(1 0 0);
-  --sidebar-accent: oklch(0.30 0.04 270);
-  --sidebar-accent-foreground: oklch(0.97 0.01 90);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.70 0.23 25);
+  --background: #0F172A;
+  --foreground: #F8FAFC;
+  --card: #1E293B;
+  --card-foreground: #F8FAFC;
+  --popover: #1E293B;
+  --popover-foreground: #F8FAFC;
+  --primary: #38BDF8;
+  --primary-foreground: #0F172A;
+  --secondary: #334155;
+  --secondary-foreground: #F8FAFC;
+  --muted: #1E293B;
+  --muted-foreground: #94A3B8;
+  --accent: #0369A1;
+  --accent-foreground: #F8FAFC;
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --border: #334155;
+  --input: #334155;
+  --ring: #38BDF8;
+
+  --gullak-red: #F87171;
+  --gullak-blue: #38BDF8;
+  --gullak-green: #4ADE80;
+  --gullak-orange: #FB923C;
+  --gullak-yellow: #FDE047;
 }
 
 @layer base {
@@ -146,24 +138,46 @@
   }
 }
 
+/* Crisp, vibrant Gullak hero wash with light clean blue and white gradient */
 @utility surface-soft {
-  background-image: linear-gradient(160deg,
-      oklch(0.95 0.12 25 / 30%),
-      oklch(0.95 0.10 90 / 25%),
-      oklch(0.95 0.08 230 / 20%),
-      var(--color-background));
+  background-image: linear-gradient(
+    180deg,
+    #F0F9FF 0%,
+    #F8FAFC 60%,
+    #FFFFFF 100%
+  );
+}
+
+/* Signature Gullak multi-color rainbow ribbon */
+@utility gullak-bar {
+  background: linear-gradient(
+    90deg,
+    #D82338 0%,
+    #D82338 20%,
+    #009DE0 20%,
+    #009DE0 40%,
+    #00A651 40%,
+    #00A651 60%,
+    #F37021 60%,
+    #F37021 80%,
+    #FFC20E 80%,
+    #FFC20E 100%
+  );
 }
 
 @utility card-soft {
   background-color: var(--color-card);
-  border: 1.5px solid color-mix(in oklab, var(--color-border) 70%, transparent);
-  box-shadow: 0 8px 32px -16px color-mix(in oklab, var(--color-primary) 30%, transparent),
-    0 2px 8px -4px color-mix(in oklab, var(--color-foreground) 10%, transparent);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1.5px solid #E2E8F0;
+  box-shadow: 0 4px 16px -4px rgba(15, 23, 42, 0.06),
+              0 1px 3px 0 rgba(15, 23, 42, 0.04);
+  transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.25s ease,
+              border-color 0.25s ease;
 }
 
 @utility card-soft:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 16px 40px -16px color-mix(in oklab, var(--color-primary) 40%, transparent),
-    0 4px 12px -4px color-mix(in oklab, var(--color-foreground) 15%, transparent);
+  transform: translateY(-4px);
+  border-color: #009DE0;
+  box-shadow: 0 16px 32px -8px rgba(0, 157, 224, 0.22),
+              0 4px 12px -2px rgba(15, 23, 42, 0.06);
 }
