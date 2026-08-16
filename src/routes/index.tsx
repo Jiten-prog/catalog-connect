@@ -104,9 +104,6 @@ function CatalogPage() {
     <div className="min-h-screen">
       <Toaster />
 
-      {/* Gullak signature color bar */}
-      <div className="h-1.5 w-full gullak-bar" />
-
       <header className="sticky top-0 z-30 border-b border-slate-100 bg-white/95 backdrop-blur shadow-xs">
         <div className="mx-auto flex max-w-6xl items-center gap-4 px-4 py-2">
           <div className="flex items-center gap-2 shrink-0">
