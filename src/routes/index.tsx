@@ -13,7 +13,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { categories, products, type Product } from "@/data/products";
+import { categories, type Product } from "@/data/products";
+import { useProducts } from "@/hooks/use-products";
 import { CartProvider, useCart } from "@/lib/cart";
 import { ProductCard } from "@/components/ProductCard";
 import { CartSheet } from "@/components/CartSheet";
@@ -49,6 +50,7 @@ export const Route = createFileRoute("/")({
 
 function CatalogPage() {
   const { add, count } = useCart();
+  const { products, loading } = useProducts();
   const [category, setCategory] = useState<string>("All");
   const [cartOpen, setCartOpen] = useState(false);
   const [query, setQuery] = useState("");
@@ -113,7 +115,7 @@ function CatalogPage() {
     return () => clearInterval(id);
   }, [heroApi]);
 
-  const featured = useMemo(() => products.filter((p) => p.featured), []);
+  const featured = useMemo(() => products.slice(0, 8), [products]);
   const visibleFeatured = useMemo(() => {
     const q = query.trim().toLowerCase();
     const base = category === "All" ? featured : featured.filter((p) => p.category === category);
@@ -320,7 +322,9 @@ function CatalogPage() {
                 ? "🎮 All Toys"
                 : category}
           </h2>
-          {filtered.length === 0 ? (
+          {loading ? (
+            <div className="py-20 text-center text-muted-foreground">Loading products…</div>
+          ) : filtered.length === 0 ? (
             <div className="py-20 text-center">
               <p className="text-4xl mb-3">🧸</p>
               <p className="font-semibold text-foreground">No toys found for "{query}"</p>
